@@ -1,4 +1,20 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and enhanced to make a generic app.
+
+## Architecture of the project:
+### Boot up for this framework start using `.env` file.
+`NOTE:` you have to put .env file in root folder.
+This project designed to work for 3 profile or environment 
+- development
+- testing 
+- production
+  
+for which we require 3 *.env files* which help this project to init which profile.
+
+
 
 ## Available Scripts
 

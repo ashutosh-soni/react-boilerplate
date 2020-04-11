@@ -1,5 +1,5 @@
 const prodConfig = {
-    activeEnv: "production"
-}
+  activeEnv: "production",
+};
 
 export default prodConfig;

@@ -1,33 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { configInit } from './config/config'
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import * as serviceWorker from "./serviceWorker";
 
-const profileInfo = (config) => {
-  console.log('App Environment:', config.activeEnv);
-  console.log('Version:', config.version);
-}
+import { configInit } from "./config/config";
+import { setConfig } from "./redux/config/config.actions";
+import { store } from "./redux/store";
+import "./index.css";
+import App from "./App";
 
-function renderApp () {
-  ReactDOM.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
-
-function boot () {
+// @desc This function init the config based on .env file then log the projection of config
+//       like { version & environment } and save the config object to redux store.
+const profileInit = () => {
+  // 1. Init config based on .env
   let config = configInit();
-  profileInfo(config);
+  console.log("App Environment:", config.activeEnv);
+  console.log("Version:", config.version);
+  store.dispatch(setConfig(config));
+};
+
+// @desc This function is entry point for rendering on root
+const renderApp = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>,
+    document.getElementById("root")
+  );
+};
+
+// @desc This function is a wrapper for init the app in proper way.
+const boot = () => {
+  // Profile init set the config of app based on .env file
+  profileInit();
+  // Rendering of the app
   renderApp();
-}
+};
 
+// Here the project start booting up.
 boot();
-
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

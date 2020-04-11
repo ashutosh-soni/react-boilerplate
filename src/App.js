@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-function App() {
+import {
+  selectActiveEnv,
+  selectVersion,
+} from "./redux/config/config.selectors";
+
+import logo from "./logo.svg";
+import "./App.css";
+
+function App({ activeEnv, appVersion }) {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>App current environment: {activeEnv}</p>
+        <p>Version: {appVersion}</p>
       </header>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  activeEnv: selectActiveEnv,
+  appVersion: selectVersion,
+});
+
+export default connect(mapStateToProps)(App);

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import Button from "@material-ui/core/Button";
 
 import {
   selectActiveEnv,
@@ -17,6 +18,9 @@ function App({ activeEnv, appVersion }) {
         <img src={logo} className="App-logo" alt="logo" />
         <p>App current environment: {activeEnv}</p>
         <p>Version: {appVersion}</p>
+        <Button variant="contained" color="primary">
+          Hello World
+        </Button>
       </header>
     </div>
   );

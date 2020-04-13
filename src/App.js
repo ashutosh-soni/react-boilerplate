@@ -1,34 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import Button from "@material-ui/core/Button";
+import { Route, Switch } from "react-router-dom";
 
-import {
-  selectActiveEnv,
-  selectVersion,
-} from "./redux/config/config.selectors";
+import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import Homepage from "./pages/homepage/homepage.component";
 
-import logo from "./logo.svg";
 import "./App.css";
 
-function App({ activeEnv, appVersion }) {
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>App current environment: {activeEnv}</p>
-        <p>Version: {appVersion}</p>
-        <Button variant="contained" color="primary">
-          Hello World
-        </Button>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Homepage} />
+      <Route exact path="/login" component={SignInAndSignUpPage} />
+    </Switch>
   );
 }
 
-const mapStateToProps = createStructuredSelector({
-  activeEnv: selectActiveEnv,
-  appVersion: selectVersion,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

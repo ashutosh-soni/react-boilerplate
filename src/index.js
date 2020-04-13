@@ -6,9 +6,16 @@ import * as serviceWorker from "./serviceWorker";
 
 import { configInit } from "./config/config";
 import { setConfig } from "./redux/config/config.actions";
+import { setWindowSize } from "./redux/window-resize/windowResize.actions";
 import { store } from "./redux/store";
+
 import "./index.css";
 import App from "./App";
+
+// screen size event listener
+window.addEventListener("resize", () => {
+  store.dispatch(setWindowSize(window.innerWidth, window.innerHeight));
+});
 
 // @desc This function init the config based on .env file then log the projection of config
 //       like { version & environment } and save the config object to redux store.

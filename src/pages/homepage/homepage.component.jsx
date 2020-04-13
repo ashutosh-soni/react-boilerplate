@@ -21,7 +21,7 @@ const Homepage = ({ activeEnv, appVersion, screenSize }) => {
         <p>Version: {appVersion}</p>
         <p>Screen width: {screenSize.width}</p>
         <Button variant="contained" color="primary">
-          Hello World
+          Material UI
         </Button>
       </header>
     </div>
